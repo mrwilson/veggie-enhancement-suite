@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.just-eat.co.uk/restaurants-*/menu"],
-      "js": ["lib/index.js"]
+      "js": ["entry.js"]
     }
   ]
 }
