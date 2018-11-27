@@ -2,11 +2,61 @@
 <html>
 <head>
     <title>Just-Eat Enhancement Suite</title>
+    <style type="text/css">
+        .with-grid {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .full-width {
+            width: 100%;
+            grid-column-start: 1;
+            grid-column-end: 5;
+        }
+
+        body {
+            width: 300px;
+            grid-template-columns: 1.5fr 0.5fr 0.5fr 0.5fr;
+            grid-template-rows: 0.5fr 0.5fr 0.5fr;
+        }
+
+        header {
+            grid-column-start: 1;
+            grid-column-end: 5;
+        }
+
+        .vegetarian-selector {
+            grid-row: 3;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+
+        .table-header {
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-row: 2;
+        }
+
+        h3                     { grid-column: 1; }
+        input[value="only"]    { grid-column: 2; }
+        input[value="include"] { grid-column: 3; }
+        input[value="exclude"] { grid-column: 4; }
+    </style>
 </head>
-<body>
-    <form name="vegetarian">
-        <input type="radio" class="vegetarian" name="vegetarian" value="only" />
-        <input type="radio" class="vegetarian" name="vegetarian" value="exclude" />
+<body class="with-grid">
+    <header class="full-width">
+        <h2>Just-Eat Enhancement Suite</h2>
+    </header>
+    <div class="table-header with-grid full-width">
+        <span></span>
+        <span>Only</span>
+        <span>Include</span>
+        <span>Exclude</span>
+    </div>
+    <form name="vegetarian" class="vegetarian-selector with-grid full-width">
+        <h3>Vegetarian</h3>
+        <input type="radio" class="vegetarian" id="vegetarian-only"    name="vegetarian" value="only" />
+        <input type="radio" class="vegetarian" id="vegetarian-include" name="vegetarian" value="include" checked="checked"/>
+        <input type="radio" class="vegetarian" id="vegetarian-exclude" name="vegetarian" value="exclude" />
     </form>
 
     <script type="text/javascript" src="foreground.js"></script>
