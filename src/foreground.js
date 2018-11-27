@@ -3,11 +3,14 @@ let browser = (typeof chrome !== 'undefined')
     : browser;
 
 function listenForClicks() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener("change", (e) => {
+        console.log(e);
+
         if (e.target.classList.contains("vegetarian")) {
             browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
-                  command: "vegetarian"
+                  command: 'vegetarian',
+                  state: e.target.value
                 });
             });
         }

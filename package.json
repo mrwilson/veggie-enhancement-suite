@@ -7,7 +7,7 @@
     "clean": "rm -rf lib/ dist/",
 
     "test": "npm run clean && npm run compile && mocha --require babel-core/register lib/*.test.js",
-    "build": "npm test && npm run clean webpack --config webpack.config.js && cp manifest.json popup.html dist/"
+    "build": "npm test && npm run clean && webpack --config webpack.config.js && cp manifest.json popup.html dist/"
   },
   "author": "Alex Wilson",
   "license": "MIT",

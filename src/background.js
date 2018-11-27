@@ -13,7 +13,7 @@ import { setVegetarianState } from './index';
 
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "vegetarian") {
-      setVegetarianState('only');
+      setVegetarianState(message.state);
     }
   });
 

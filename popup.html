@@ -4,7 +4,11 @@
     <title>Just-Eat Enhancement Suite</title>
 </head>
 <body>
-    <button class="vegetarian">Hide Non-Vegetarian Food</button>
+    <form name="vegetarian">
+        <input type="radio" class="vegetarian" name="vegetarian" value="only" />
+        <input type="radio" class="vegetarian" name="vegetarian" value="exclude" />
+    </form>
+
     <script type="text/javascript" src="foreground.js"></script>
 </body>
 </html>
