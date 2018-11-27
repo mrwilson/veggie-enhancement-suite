@@ -1,11 +1,11 @@
-export function hideNonVegetarian(document) {
-    var products = document.getElementsByClassName('product');
+export function setVegetarianState(state, doc = window.document) {
 
-    var prods = [...products];
+    [...doc.getElementsByClassName('product')].forEach((product) => {
 
-    prods.forEach((product) => {
         if(product.getElementsByClassName('vegetarian').length == 0) {
-            product.style.display = "none";
+            if (state === 'only') {
+                product.style.display = "none";
+            }
         }
     });
 };

@@ -1,4 +1,4 @@
-import { hideNonVegetarian } from './index';
+import { setVegetarianState } from './index';
 
 (function() {
 
@@ -13,7 +13,7 @@ import { hideNonVegetarian } from './index';
 
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "vegetarian") {
-      hideNonVegetarian(document);
+      setVegetarianState('only');
     }
   });
 

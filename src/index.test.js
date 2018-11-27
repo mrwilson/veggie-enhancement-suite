@@ -2,7 +2,7 @@ import { sinon } from 'sinon';
 import { JSDOM } from 'jsdom';
 import { expect } from 'chai';
 
-import { hideNonVegetarian } from './index';
+import { setVegetarianState } from './index';
 
 describe('Index', () => {
     describe('for vegetarians', () => {
@@ -30,13 +30,13 @@ describe('Index', () => {
         }
 
         it('should hide non-vegetarian options', () => {
-            hideNonVegetarian(dom.window.document);
+            setVegetarianState('only', dom.window.document);
 
             expect(getDisplayById('not-vegetarian')).to.equal('none');
         });
 
         it('should leave vegetarian options alone', () => {
-            hideNonVegetarian(dom.window.document);
+            setVegetarianState('only', dom.window.document);
 
             expect(getDisplayById('is-vegetarian')).to.equal('');
         });
