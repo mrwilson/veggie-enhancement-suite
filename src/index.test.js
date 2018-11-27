@@ -40,5 +40,17 @@ describe('Index', () => {
 
             expect(getDisplayById('is-vegetarian')).to.equal('');
         });
+
+        it('should hide vegetarian options', () => {
+            setVegetarianState('exclude', dom.window.document);
+
+            expect(getDisplayById('not-vegetarian')).to.equal('');
+        });
+
+        it('should leave vegetarian options alone', () => {
+            setVegetarianState('exclude', dom.window.document);
+
+            expect(getDisplayById('is-vegetarian')).to.equal('none');
+        });
     });
 });
