@@ -1,4 +1,5 @@
 import { setVegetarianState } from './index';
+import { readAppState } from './browser';
 
 (function() {
 
@@ -7,9 +8,7 @@ import { setVegetarianState } from './index';
   }
   window.hasRun = true;
 
-  let browser = (typeof chrome !== 'undefined')
-    ? chrome
-    : browser;
+  readAppState((state) => setVegetarianState(state.vegetarian))
 
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "vegetarian") {

@@ -1,18 +1,17 @@
-
+import { readAppState, pushAppState, sendMessageToActiveTab } from './browser';
 
 function listenForClicks() {
-    document.addEventListener("change", (e) => {
-    let browser = (typeof chrome !== 'undefined')
-        ? chrome
-        : browser;
+    readAppState((state) => {
+        let selection = document.getElementById(`vegetarian-${state.vegetarian}`);
+        if (selection) {
+            selection.checked = true;
+        }
+    });
 
+    document.addEventListener("change", (e) => {
         if (e.target.classList.contains("vegetarian")) {
-            browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
-                browser.tabs.sendMessage(tabs[0].id, {
-                  command: 'vegetarian',
-                  state: e.target.value
-                });
-            });
+            sendMessageToActiveTab({command: 'vegetarian', state: e.target.value})
+            pushAppState({ 'vegetarian': e.target.value });
         }
     });
 }
