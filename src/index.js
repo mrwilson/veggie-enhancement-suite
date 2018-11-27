@@ -2,12 +2,16 @@ export function setVegetarianState(state, doc = window.document) {
 
     [...doc.getElementsByClassName('product')].forEach((product) => {
 
-        if(product.getElementsByClassName('vegetarian').length == 0 && state == 'only') {
-            product.style.display = 'none';
-        } else if (product.getElementsByClassName('vegetarian').length != 0 && state == 'exclude') {
-            product.style.display = 'none';
-        } else {
+        if(state == 'only') {
+            product.style.display = isVegetarian(product) ? '' : 'none';
+        } else if (state == 'exclude') {
+            product.style.display = isVegetarian(product) ? 'none' : '';
+        } else if (state == 'include') {
             product.style.display = '';
         }
     });
 };
+
+function isVegetarian(product) {
+    return product.getElementsByClassName('vegetarian').length != 0;
+}
