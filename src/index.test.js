@@ -12,7 +12,6 @@ describe('Index', () => {
             <head></head>
             <body>
                 <div class="container">
-
                     <div class="product" id="is-vegetarian">
                         <span class="vegetarian"></span>
                     </div>

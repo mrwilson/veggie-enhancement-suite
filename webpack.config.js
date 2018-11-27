@@ -2,6 +2,7 @@ module.exports = {
     mode: "production",
     optimization: { minimize: false },
     entry: {
-        entry: "./src/entry.js",
+        background: "./src/background.js",
+        foreground: "./src/foreground.js"
     }
 };

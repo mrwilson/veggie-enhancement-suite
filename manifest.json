@@ -6,10 +6,16 @@
 
   "description": "Improved browsing experience for JustEat.",
 
-  "content_scripts": [
-    {
-      "matches": ["https://www.just-eat.co.uk/restaurants-*/menu"],
-      "js": ["entry.js"]
-    }
+  "browser_action": {
+    "default_title": "Just-East Enhancement Suite",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "https://www.just-eat.co.uk/restaurants-*/menu"
   ]
 }

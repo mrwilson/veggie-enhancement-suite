@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Improved browsing experience for just-eat",
   "scripts": {
-    "build": "npm run clean && webpack --config webpack.config.js && cp manifest.json dist/",
+    "build": "npm run clean && webpack --config webpack.config.js && cp manifest.json popup.html dist/",
     "compile": "babel --presets es2015 -d lib/ src/",
     "test": "mocha --require babel-core/register lib/*.test.js",
     "clean": "rm -rf lib/ dist/"
