@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Improved browsing experience for just-eat",
   "scripts": {
-    "build": "npm run clean && webpack --config webpack.config.js && cp manifest.json popup.html dist/",
     "compile": "babel --presets es2015 -d lib/ src/",
-    "test": "mocha --require babel-core/register lib/*.test.js",
-    "clean": "rm -rf lib/ dist/"
+    "clean": "rm -rf lib/ dist/",
+
+    "test": "npm run clean && npm run compile && mocha --require babel-core/register lib/*.test.js",
+    "build": "npm test && npm run clean webpack --config webpack.config.js && cp manifest.json popup.html dist/"
   },
   "author": "Alex Wilson",
   "license": "MIT",
