@@ -11,11 +11,16 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["popup.js"]
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.just-eat.co.uk/restaurants-*/menu"],
+      "js": ["on_page.js"]
+    }
+  ],
   "permissions": [
     "tabs",
-    "activeTab",
-    "https://www.just-eat.co.uk/restaurants-*/menu"
+    "activeTab"
   ]
 }

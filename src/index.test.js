@@ -89,6 +89,5 @@ describe('Index', () => {
             expect(getDisplayById(dom, 'is-vegetarian')).to.equal('none');
             expect(getDisplayById(dom, 'not-vegetarian')).to.equal('');
         });
-
     });
 });

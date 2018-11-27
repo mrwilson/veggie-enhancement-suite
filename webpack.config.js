@@ -2,7 +2,7 @@ module.exports = {
     mode: "production",
     optimization: { minimize: false },
     entry: {
-        background: "./src/background.js",
-        foreground: "./src/foreground.js"
+        on_page: "./src/on_page.js",
+        popup: "./src/popup.js"
     }
 };
