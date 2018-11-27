@@ -1,10 +1,9 @@
-
+import { browser } from './browser'
 
 function listenForClicks() {
     document.addEventListener("change", (e) => {
-    let browser = (typeof chrome !== 'undefined')
-        ? chrome
-        : browser;
+
+        let browser = browser();
 
         if (e.target.classList.contains("vegetarian")) {
             browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
@@ -14,6 +13,7 @@ function listenForClicks() {
                 });
             });
         }
+
     });
 }
 
