@@ -1,17 +1,7 @@
+import { Products } from './products';
+
 export function setVegetarianState(state, doc = window.document) {
 
-    [...doc.getElementsByClassName('product')].forEach((product) => {
+    [...doc.getElementsByClassName('category')].map((category) => new Products(category).updateState(state));
 
-        if(state == 'only') {
-            product.style.display = isVegetarian(product) ? '' : 'none';
-        } else if (state == 'exclude') {
-            product.style.display = isVegetarian(product) ? 'none' : '';
-        } else if (state == 'include') {
-            product.style.display = '';
-        }
-    });
 };
-
-function isVegetarian(product) {
-    return product.getElementsByClassName('vegetarian').length != 0;
-}
