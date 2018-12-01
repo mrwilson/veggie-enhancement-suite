@@ -1,29 +1,35 @@
-export function readAppState(callback) {
-    let browser = (typeof chrome !== 'undefined')
-        ? chrome
-        : browser;
+export class Browser {
 
-    browser.storage.local.get('jees_state', (state) => {
-        if (state && state.jees_state && state.jees_state.vegetarian) {
-            callback(state.jees_state);
-        }
-    });
-}
+    constructor() {
+        this.stateName = 'jees_state';
 
-export function pushAppState(state) {
-    let browser = (typeof chrome !== 'undefined')
-        ? chrome
-        : browser;
+        this.browser = (typeof chrome !== 'undefined')
+            ? chrome
+            : browser;
+    }
 
-    browser.storage.local.set({'jees_state': state});
-}
+    readAppState(callback) {
+        this.browser.storage.local.get(this.stateName, (state) => {
+            if (state && state[this.stateToWrite] && state[this.stateToWrite].vegetarian) {
+                callback(state[this.stateToWrite]);
+            }
+        });
+    }
 
-export function sendMessageToActiveTab(message) {
-    let browser = (typeof chrome !== 'undefined')
-        ? chrome
-        : browser;
+    pushAppState(state) {
+        let stateToWrite = {};
+        stateToWrite[this.stateName] = state;
 
-    browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        browser.tabs.sendMessage(tabs[0].id, message);
-    });
+        this.browser.storage.local.set(stateToWrite);
+    }
+
+    sendMessageToActiveTab(message) {
+        this.browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
+            this.browser.tabs.sendMessage(tabs[0].id, message);
+        });
+    }
+
+    onMessage(callback) {
+      this.browser.runtime.onMessage.addListener(callback);
+    }
 }
