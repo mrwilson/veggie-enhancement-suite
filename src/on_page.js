@@ -10,7 +10,10 @@ import { Browser } from './browser';
 
   let browser = new Browser();
 
-  browser.readAppState((state) => setVegetarianState(state.vegetarian))
+  browser.readAppState(
+    (state) => setVegetarianState(state.vegetarian),
+    (state) => console.log("JEES :: Unable to load state from local storage")
+  );
 
   browser.onMessage((message) => {
     if (message.command === "vegetarian") {

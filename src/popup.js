@@ -4,12 +4,17 @@ function listenForClicks() {
 
     let browser = new Browser()
 
-    browser.readAppState((state) => {
+    function checkMostRecentSelection(state) {
         let selection = document.getElementById(`vegetarian-${state.vegetarian}`);
         if (selection) {
             selection.checked = true;
         }
-    });
+    }
+
+    browser.readAppState(
+        checkMostRecentSelection,
+        (state) => console.log("JEES :: Unable to load state from local storage")
+    );
 
     document.addEventListener("change", (e) => {
         if (e.target.classList.contains("vegetarian")) {

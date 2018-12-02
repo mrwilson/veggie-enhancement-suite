@@ -1,17 +1,16 @@
 export class Browser {
 
-    constructor() {
+    constructor(browser = (typeof chrome !== 'undefined') ? chrome : browser) {
         this.stateName = 'jees_state';
-
-        this.browser = (typeof chrome !== 'undefined')
-            ? chrome
-            : browser;
+        this.browser = browser;
     }
 
-    readAppState(callback) {
+    readAppState(callback, errorCallback) {
         this.browser.storage.local.get(this.stateName, (state) => {
-            if (state && state[this.stateToWrite] && state[this.stateToWrite].vegetarian) {
-                callback(state[this.stateToWrite]);
+            if (state && state[this.stateName] && state[this.stateName].vegetarian) {
+                callback(state[this.stateName]);
+            } else {
+                errorCallback(state);
             }
         });
     }
