@@ -9,12 +9,12 @@ describe('Products', () => {
           <!DOCTYPE html>
           <head></head>
           <body>
-              <div class="category" id="at-least-one-option">
+              <div class="category">
                   <div class="products">
-                      <div class="product" id="is-vegetarian">
+                      <div class="foo" id="is-vegetarian">
                           <span class="vegetarian"></span>
                       </div>
-                      <div class="product" id="not-vegetarian">
+                      <div class="foo" id="not-vegetarian">
                           <span class="something-else"></span>
                       </div>
                   </div>
@@ -23,7 +23,13 @@ describe('Products', () => {
 
 
         let products = [...dom.window.document.getElementsByClassName('category')]
-            .map((category) => new Products(category));
+            .map((category) =>
+                new Products(
+                    category,
+                    (element) => [...element.getElementsByClassName('foo')],
+                    (element) => element.getElementsByClassName('vegetarian').length > 0
+                )
+        );
 
         expect(products.length).to.equal(1);
         expect(products[0].all.length).to.equal(2);
@@ -34,27 +40,23 @@ describe('Products', () => {
     describe('should parse single product element into Product object', () => {
 
         it('without vegetarian class', () => {
-            let dom = new JSDOM(`<!DOCTYPE html><head></head><body>
-                <div class="product" id="is-vegetarian">
-                  <span class="not-vegetarian"></span>
-                </div>
-            </body>`);
+            let dom = new JSDOM(`<!DOCTYPE html><head></head><body></body>`);
 
-
-            let products = new Product(dom.window.document.getElementById('is-vegetarian'));
+            let products = new Product(
+                dom.window.document.getElementById('is-vegetarian'),
+                (element) => false
+             );
 
             expect(products.isVegetarian).to.equal(false);
         });
 
         it('without vegetarian class', () => {
-            let dom = new JSDOM(`<!DOCTYPE html><head></head><body>
-                <div class="product" id="is-vegetarian">
-                  <span class="vegetarian"></span>
-                </div>
-            </body>`);
+            let dom = new JSDOM(`<!DOCTYPE html><head></head><body></body>`);
 
-
-            let products = new Product(dom.window.document.getElementById('is-vegetarian'));
+            let products = new Product(
+                dom.window.document.getElementById('is-vegetarian'),
+                (element) => true
+            );
 
             expect(products.isVegetarian).to.equal(true);
         });

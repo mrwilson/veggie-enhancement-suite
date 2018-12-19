@@ -1,4 +1,4 @@
-import { setVegetarianState } from './index';
+import { JustEatAdapter } from './adapters/just-eat';
 import { Browser } from './browser';
 
 (function() {
@@ -10,14 +10,16 @@ import { Browser } from './browser';
 
   let browser = new Browser();
 
+  let adapter = new JustEatAdapter(document);
+
   browser.readAppState(
-    (state) => setVegetarianState(state.vegetarian),
-    (state) => console.log("JEES :: Unable to load state from local storage")
+    (state) => adapter.updateState(state.vegetarian),
+    (state) => console.log(" JEES :: Unable to load state from local storage")
   );
 
   browser.onMessage((message) => {
     if (message.command === "vegetarian") {
-      setVegetarianState(message.state);
+      adapter.updateState(message.state);
     }
   });
 

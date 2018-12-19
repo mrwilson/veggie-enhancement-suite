@@ -1,8 +1,8 @@
 export class Products {
 
-    constructor(element) {
+    constructor(element, loadProduct, isVegetarian) {
         this.element = element;
-        this.all = [...element.getElementsByClassName('product')].map((product) => new Product(product));
+        this.all = loadProduct(element).map((product) => new Product(product, isVegetarian));
         this.atLeastOneVegetarianProduct = this.all.filter((product) => product.isVegetarian).length > 0;
         this.allVegetarianProducts = this.all.filter((product) => product.isVegetarian).length == this.all.length;
     }
@@ -30,9 +30,9 @@ export class Products {
 
 export class Product {
 
-    constructor(element) {
+    constructor(element, isVegetarian) {
         this.element = element;
-        this.isVegetarian = element.getElementsByClassName('vegetarian').length != 0
+        this.isVegetarian = isVegetarian(element);
     }
 
     updateState(state) {
