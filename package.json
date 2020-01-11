@@ -1,7 +1,7 @@
 {
-  "name": "justeat-enhancement-suite",
+  "name": "veggie-enhancement-suite",
   "version": "1.0.0",
-  "description": "Improved browsing experience for just-eat",
+  "description": "Improved browsing experience for vegetarians / vegans",
   "scripts": {
     "compile": "babel --presets es2015 -d lib/ src/",
     "clean": "rm -rf lib/ dist/",
